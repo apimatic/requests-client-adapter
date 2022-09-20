@@ -26,7 +26,7 @@ setup(
         'cachecontrol~=0.12.6'
     ],
     tests_require=[
-        'nose>=1.3.7'
-    ],
-    test_suite = 'nose.collector'
+        'pytest~=7.1.3',
+        'pytest-cov~=3.0.0'
+    ]
 )
