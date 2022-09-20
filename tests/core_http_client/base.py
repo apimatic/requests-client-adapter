@@ -34,9 +34,10 @@ class Base:
                                retry_methods=None,
                                verify=True,
                                http_client_instance=None,
-                               override_http_client_configuration=False):
+                               override_http_client_configuration=False,
+                               should_skip_SSL_verification=False):
         return RequestsClient(timeout=timeout, cache=cache, max_retries=max_retries, backoff_factor=backoff_factor,
                               retry_statuses=retry_statuses, retry_methods=retry_methods, verify=verify,
                               http_client_instance=http_client_instance,
                               override_http_client_configuration=override_http_client_configuration,
-                              response_factory=HttpResponseFactory())
+                              response_factory=HttpResponseFactory(), should_skip_SSL_verification=should_skip_SSL_verification)

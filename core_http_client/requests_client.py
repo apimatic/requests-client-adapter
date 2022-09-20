@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import urllib3
 from cachecontrol import CacheControl
 from core_interfaces.client.http_client import HttpClient
 from core_interfaces.types.http_method_enum import HttpMethodEnum
@@ -26,13 +26,17 @@ class RequestsClient(HttpClient):
                  verify=True,
                  http_client_instance=None,
                  override_http_client_configuration=False,
-                 response_factory=None):
+                 response_factory=None,
+                 should_skip_SSL_verification=False):
         """The constructor.
 
         Args:
             timeout (float): The default global timeout(seconds).
 
         """
+        if should_skip_SSL_verification:
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
         if http_client_instance is None:
             self.create_default_http_client(timeout, cache, max_retries,
                                             backoff_factor, retry_statuses,

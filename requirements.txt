@@ -1,3 +1,4 @@
 git+https://github.com/apimatic/core-interfaces-python.git@main
 requests~=2.25
 cachecontrol~=0.12.6
+urllib3~=1.26.12
