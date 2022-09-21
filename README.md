@@ -24,7 +24,7 @@ Streaming Downloads
 Automatic honoring of .netrc
 
 ## Version supported 
-Currenty APIMatic supports pyhton versions 3.7-3.9, hence the request-client-lib will need the same versions to be supported
+Currenty APIMatic supports [![version][python-version3.7-3.9]] hence the request-client-lib will need the same versions to be supported
 
 ## Installation 
 Simply run the command below in you SDK as the requests-client-lib has been added as a dependency in the SDK
@@ -38,6 +38,5 @@ pip install -r requirements.txt
 | `create_default_http_client`     | function to creat a defaultp http client                                                                                                                                                     | 
 | `force_retries`    | Reset retries according to each request                                                                                                                     | 
 | `execute` | Execute a given HttpRequest to get a string response back | 
-| `convert_response` |Converts the Response object of the CoreHttpClient into an
-        CoreHttpResponse object.                                                                                                         |
+| `convert_response` |Converts the Response object of the CoreHttpClient into an CoreHttpResponse object.                                                                                                         |
 
