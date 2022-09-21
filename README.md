@@ -11,17 +11,17 @@ Requests is one of the most downloaded Python packages today, pulling in around 
 ## Supported Features & Best–Practices
 Requests is ready for the demands of building robust and reliable HTTP–speaking applications, for the needs of today.
 
-Keep-Alive & Connection Pooling
-International Domains and URLs
-Sessions with Cookie Persistence
-Browser-style TLS/SSL Verification
-Basic & Digest Authentication
-Automatic Content Decompression and Decoding
-Multi-part File Uploads
-SOCKS Proxy Support
-Connection Timeouts
-Streaming Downloads
-Automatic honoring of .netrc
+* Keep-Alive & Connection Pooling
+* International Domains and URLs
+* Sessions with Cookie Persistence
+* Browser-style TLS/SSL Verification
+* Basic & Digest Authentication
+* Automatic Content Decompression and Decoding
+* Multi-part File Uploads
+* SOCKS Proxy Support
+* Connection Timeouts
+* Streaming Downloads
+* Automatic honoring of .netrc
 
 ## Version supported 
 Currenty APIMatic supports  `Python version 3.7 - 3.9`  hence the request-client-lib will need the same versions to be supported
