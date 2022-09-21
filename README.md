@@ -24,7 +24,7 @@ Streaming Downloads
 Automatic honoring of .netrc
 
 ## Version supported 
-Currenty APIMatic supports [![version][python-version3.7-3.9]] hence the request-client-lib will need the same versions to be supported
+Currenty APIMatic supports  `Python version 3.7 - 3.9`  hence the request-client-lib will need the same versions to be supported
 
 ## Installation 
 Simply run the command below in you SDK as the requests-client-lib has been added as a dependency in the SDK
