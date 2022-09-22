@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import urllib3
+from requests.packages import urllib3
 from cachecontrol import CacheControl
 from core_interfaces.client.http_client import HttpClient
 from core_interfaces.types.http_method_enum import HttpMethodEnum
