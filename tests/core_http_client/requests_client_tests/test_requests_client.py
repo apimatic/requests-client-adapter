@@ -49,7 +49,7 @@ class TestRequestsClient(Base):
                            expected_retry_statuses, expected_retry_methods, expected_verify):
         actual_client = Base.custom_requests_client(timeout, cache, max_retries, backoff_factor, retry_statuses,
                                                     retry_methods, verify, http_client_instance,
-                                                    override_http_client_configuration, True)
+                                                    override_http_client_configuration)
         for adapter in actual_client.session.adapters.values():
             assert adapter.max_retries.total == expected_max_retries
             assert adapter.max_retries.backoff_factor == expected_backoff_factor

@@ -26,15 +26,14 @@ class RequestsClient(HttpClient):
                  verify=True,
                  http_client_instance=None,
                  override_http_client_configuration=False,
-                 response_factory=None,
-                 should_skip_SSL_verification=False):
+                 response_factory=None):
         """The constructor.
 
         Args:
             timeout (float): The default global timeout(seconds).
 
         """
-        if should_skip_SSL_verification:
+        if not verify:
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
         if http_client_instance is None:
