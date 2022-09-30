@@ -13,12 +13,12 @@ pip install -r requirements.txt
 ```
 **Supported Methods Provided by requests-client**
 
-| Method                           | Description                                                                       |
-| ---------------------------------|-----------------------------------------------------------------------------------|
-| `create_default_http_client`     | function to creat a defaultp http client                                          | 
-| `force_retries`                  | Reset retries according to each request                                           | 
-| `execute`                        | Execute a given HttpRequest to get a string response back                         | 
-| `convert_response`               |Converts the Response object of the CoreHttpClient into an CoreHttpResponse object |
+| Method                           | Description                                                                                                          |
+| ---------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| [`create_default_http_client`](core_http_client/requests_client.py) | function to creat a defaultp http client                                          | 
+| [`force_retries`](core_http_client/requests_client.py)              | Reset retries according to each request                                           | 
+| [`execute`](core_http_client/requests_client.py)                    | Execute a given HttpRequest to get a string response back                         | 
+| [`convert_response`](core_http_client/requests_client.py)           |Converts the Response object of the CoreHttpClient into an CoreHttpResponse object |
 
 ## Tests
 The requests client implementation also contains unit tests to ensure reliability of the implementation and to prevent unwanted breakages.
