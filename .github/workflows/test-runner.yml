@@ -1,0 +1,25 @@
+name: Test Runner
+
+on:
+  workflow_dispatch
+
+jobs:
+  test-runner:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.7", "3.8", "3.9"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Install test requirements
+        run: pip install -r test-requirements.txt
+      - name: Run tests w/ coverage report
+        # Run tox using the version of Python in `PATH`
+        run: pytest --cov core_lib/
