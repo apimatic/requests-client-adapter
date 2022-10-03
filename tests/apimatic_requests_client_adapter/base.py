@@ -1,9 +1,9 @@
-from core_interfaces.types.http_method_enum import HttpMethodEnum
-from core_http_client.requests_client import RequestsClient
-from tests.core_http_client.models.internal.http_request import HttpRequest
-from tests.core_http_client.models.internal.http_response import HttpResponse
-from tests.core_http_client.models.external.http_response import HttpResponse as ActualHttpResponse
-from tests.core_http_client.models.internal.http_response_factory import HttpResponseFactory
+from apimatic_core_interfaces.types.http_method_enum import HttpMethodEnum
+from apimatic_requests_client_adapter.requests_client import RequestsClient
+from tests.apimatic_requests_client_adapter.models.internal.http_request import HttpRequest
+from tests.apimatic_requests_client_adapter.models.internal.http_response import HttpResponse
+from tests.apimatic_requests_client_adapter.models.external.http_response import HttpResponse as ActualHttpResponse
+from tests.apimatic_requests_client_adapter.models.internal.http_response_factory import HttpResponseFactory
 
 
 class Base:

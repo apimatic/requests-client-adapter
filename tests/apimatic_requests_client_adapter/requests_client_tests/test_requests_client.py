@@ -1,7 +1,7 @@
 import pytest
-from core_interfaces.types.http_method_enum import HttpMethodEnum
+from apimatic_core_interfaces.types.http_method_enum import HttpMethodEnum
 
-from tests.core_http_client.base import Base
+from tests.apimatic_requests_client_adapter.base import Base
 
 
 class TestRequestsClient(Base):

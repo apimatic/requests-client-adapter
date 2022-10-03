@@ -1,3 +1,3 @@
 __all__ = [
-    'core_http_client'
+    'apimatic_requests_client_adapter'
 ]

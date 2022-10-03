@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from requests.packages import urllib3
 from cachecontrol import CacheControl
-from core_interfaces.client.http_client import HttpClient
-from core_interfaces.types.http_method_enum import HttpMethodEnum
+from apimatic_core_interfaces.client.http_client import HttpClient
+from apimatic_core_interfaces.types.http_method_enum import HttpMethodEnum
 from requests import session
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -67,7 +67,7 @@ class RequestsClient(HttpClient):
         self.session = session()
 
         retries = Retry(total=max_retries, backoff_factor=backoff_factor,
-                        status_forcelist=retry_statuses, method_whitelist=retry_methods)
+                        status_forcelist=retry_statuses, allowed_methods=retry_methods)
         self.session.mount('http://', HTTPAdapter(max_retries=retries))
         self.session.mount('https://', HTTPAdapter(max_retries=retries))
 

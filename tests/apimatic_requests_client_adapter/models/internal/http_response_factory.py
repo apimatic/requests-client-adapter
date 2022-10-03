@@ -1,6 +1,6 @@
-from core_interfaces.factories.response_factory import ResponseFactory
+from apimatic_core_interfaces.factories.response_factory import ResponseFactory
 
-from tests.core_http_client.models.internal.http_response import HttpResponse
+from tests.apimatic_requests_client_adapter.models.internal.http_response import HttpResponse
 
 
 class HttpResponseFactory(ResponseFactory):
