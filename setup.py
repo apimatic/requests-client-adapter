@@ -11,7 +11,7 @@ else:
         long_description = fh.read()
 
 setup(
-    name='requests-client-lib',
+    name='apimatic-requests-client-adapter',
     version='1.0.0',
     description='The implementation of Requests client library provided by APIMatic',
     long_description=long_description,
