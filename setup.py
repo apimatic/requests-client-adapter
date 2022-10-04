@@ -12,15 +12,14 @@ else:
 
 setup(
     name='apimatic-requests-client-adapter',
-    version='1.0.0',
-    description='The implementation of Requests client library provided by APIMatic',
+    version='0.1.0',
+    description='An adapter for requests client library consumed by the SDKs generated with APIMatic',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='APIMatic',
     author_email='support@apimatic.io',
     url='https://apimatic.io',
     packages=find_packages(),
-    # package_data={"core": ["py.typed"]},
     install_requires=[
         'requests~=2.25',
         'cachecontrol~=0.12.6'

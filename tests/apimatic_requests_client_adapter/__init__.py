@@ -1,3 +1,5 @@
 __all__ = [
-    'requests_client_tests'
+    'requests_client_tests',
+    'models',
+    'base'
 ]
