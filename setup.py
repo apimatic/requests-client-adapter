@@ -21,6 +21,7 @@ setup(
     url='https://apimatic.io',
     packages=find_packages(),
     install_requires=[
+        'apimatic-core-interfaces~=0.1.0',
         'requests~=2.25',
         'cachecontrol~=0.12.6'
     ],
