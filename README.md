@@ -1,13 +1,16 @@
 # apimatic-requests-client-adapter
+[![PyPI][pypi-version]](https://pypi.org/project/apimatic-requests-client-adapter/)
+[![Tests][test-badge]][test-url]
+[![Licence][license-badge]][license-url]
 
-Requests is a simple, yet elegant, HTTP library.
-This repository contains the client implementation that uses the requests library for APIMatics python SDK. 
+## Introduction
+Requests is a simple, yet elegant, HTTP library. This repository contains the client implementation that uses the requests library for python SDK provided by APIMatic. 
 
 ## Version supported 
-Currenty APIMatic supports  `Python version 3.7 - 3.9`  hence the apimatic-requests-client-adapter will need the same versions to be supported
+Currenty APIMatic supports  `Python version 3.7 - 3.9`  hence the apimatic-requests-client-adapter will need the same versions to be supported.
 
 ## Installation 
-Simply run the command below in your SDK as the requests-client-lib will be added as a dependency in the SDK
+Simply run the command below in your SDK as the apimatic-requests-client-adapter will be added as a dependency in the SDK.
 ```python
 pip install apimatic-requests-client-adapter
 ```
@@ -26,3 +29,9 @@ The requests client implementation also contains unit tests to ensure reliabilit
 ## Links
 * [apimatic-core-interfaces](https://pypi.org/project/apimatic-core-interfaces/)
 * [Requests](https://pypi.org/project/requests/)
+
+[pypi-version]: https://img.shields.io/pypi/v/apimatic-requests-client-adapter
+[test-badge]: https://github.com/apimatic/requests-client-adapter/actions/workflows/test-runner.yml/badge.svg
+[test-url]: https://github.com/apimatic/requests-client-adapter/actions/workflows/test-runner.yml
+[license-badge]: https://img.shields.io/badge/licence-APIMATIC-blue
+[license-url]: LICENSE
