@@ -7,7 +7,7 @@
 Requests is a simple, yet elegant, HTTP library. This repository contains the client implementation that uses the requests library for python SDK provided by APIMatic. 
 
 ## Version supported 
-Currenty APIMatic supports  `Python version 3.7 - 3.9`  hence the apimatic-requests-client-adapter will need the same versions to be supported.
+Currenty APIMatic supports  `Python version 3.7 - 3.10`  hence the apimatic-requests-client-adapter will need the same versions to be supported.
 
 ## Installation 
 Simply run the command below in your SDK as the apimatic-requests-client-adapter will be added as a dependency in the SDK.
