@@ -1,6 +1,8 @@
 # apimatic-requests-client-adapter
-[![PyPI][pypi-version]](https://pypi.org/project/apimatic-requests-client-adapter/)
+[![PyPI][pypi-version]][pypi-apimatic-requests-client-adapter-url]
 [![Tests][test-badge]][test-url]
+[![Maintainability][maintainability-url]][code-climate-url]
+[![Test Coverage][test-coverage-url]][code-climate-url]
 [![Licence][license-badge]][license-url]
 
 ## Introduction
@@ -31,7 +33,11 @@ The requests client implementation also contains unit tests to ensure reliabilit
 * [Requests](https://pypi.org/project/requests/)
 
 [pypi-version]: https://img.shields.io/pypi/v/apimatic-requests-client-adapter
+[pypi-apimatic-requests-client-adapter-url]: https://pypi.org/project/apimatic-requests-client-adapter/
 [test-badge]: https://github.com/apimatic/requests-client-adapter/actions/workflows/test-runner.yml/badge.svg
 [test-url]: https://github.com/apimatic/requests-client-adapter/actions/workflows/test-runner.yml
+[code-climate-url]: https://codeclimate.com/github/apimatic/requests-client-adapter
+[maintainability-url]: https://api.codeclimate.com/v1/badges/1daeb05c58b9a252043c/maintainability
+[test-coverage-url]: https://api.codeclimate.com/v1/badges/1daeb05c58b9a252043c/test_coverage
 [license-badge]: https://img.shields.io/badge/licence-APIMATIC-blue
 [license-url]: LICENSE
