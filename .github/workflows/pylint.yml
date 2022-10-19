@@ -1,4 +1,4 @@
-name: pylint-runner
+name: Pylint Runner
 
 on: 
   push:
