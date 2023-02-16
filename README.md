@@ -1,7 +1,6 @@
 # apimatic-requests-client-adapter
 [![PyPI][pypi-version]][pypi-apimatic-requests-client-adapter-url]
 [![Tests][test-badge]][test-url]
-[![Maintainability][maintainability-url]][code-climate-url]
 [![Test Coverage][test-coverage-url]][code-climate-url]
 [![Licence][license-badge]][license-url]
 
