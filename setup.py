@@ -12,7 +12,7 @@ else:
 
 setup(
     name='apimatic-requests-client-adapter',
-    version='0.1.3',
+    version='0.1.4',
     description='An adapter for requests client library consumed by the SDKs generated with APIMatic',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -23,7 +23,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'apimatic-core-interfaces~=0.1.0',
-        'requests~=2.25',
+        'requests~=2.31',
         'cachecontrol~=0.12.6'
     ],
     tests_require=[
