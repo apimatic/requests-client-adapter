@@ -27,7 +27,7 @@ For example:  0.1.1
 **Environmental details**
 For example:
 OS: Linux
-Runtime version: Python 3
+Runtime version: Python 3.7
 
 **Additional context**
 Add any other context about the problem here.
