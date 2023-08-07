@@ -52,6 +52,8 @@ class RequestsClient(HttpClient):
                     adapter.max_retries.allowed_methods = retry_methods
 
             self.timeout = http_client_instance.timeout
+            if http_client_instance is None:
+                http_client_instance.session = self.session
             self.session = http_client_instance.session
         self.response_factory = response_factory
 
