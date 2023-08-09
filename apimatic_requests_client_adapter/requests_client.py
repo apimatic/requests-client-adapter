@@ -43,16 +43,18 @@ class RequestsClient(HttpClient):
         else:
             if override_http_client_configuration:
                 http_client_instance.timeout = timeout
-                http_client_instance.session.verify = verify
-                adapters = http_client_instance.session.adapters
-                for adapter in adapters.values():
-                    adapter.max_retries.total = max_retries
-                    adapter.max_retries.backoff_factor = backoff_factor
-                    adapter.max_retries.status_forcelist = retry_statuses
-                    adapter.max_retries.allowed_methods = retry_methods
+                if hasattr(http_client_instance, 'session'):
+                    http_client_instance.session.verify = verify
+                    adapters = http_client_instance.session.adapters
+                    for adapter in adapters.values():
+                        adapter.max_retries.total = max_retries
+                        adapter.max_retries.backoff_factor = backoff_factor
+                        adapter.max_retries.status_forcelist = retry_statuses
+                        adapter.max_retries.allowed_methods = retry_methods
 
             self.timeout = http_client_instance.timeout
-            self.session = http_client_instance.session
+            if hasattr(http_client_instance, 'session'):
+                self.session = http_client_instance.session
         self.response_factory = response_factory
 
     def create_default_http_client(self,
