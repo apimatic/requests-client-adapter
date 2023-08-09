@@ -43,7 +43,8 @@ class RequestsClient(HttpClient):
         else:
             if override_http_client_configuration:
                 http_client_instance.timeout = timeout
-                http_client_instance.session.verify = verify
+                if hasattr(http_client_instance, 'session'):
+                    http_client_instance.session.verify = verify
                 adapters = http_client_instance.session.adapters
                 for adapter in adapters.values():
                     adapter.max_retries.total = max_retries
