@@ -51,6 +51,8 @@ class RequestsClient(HttpClient):
                         adapter.max_retries.backoff_factor = backoff_factor
                         adapter.max_retries.status_forcelist = retry_statuses
                         adapter.max_retries.allowed_methods = retry_methods
+                        adapter.max_retries.raise_on_status = False
+                        adapter.max_retries.raise_on_redirect = False
 
             self.timeout = http_client_instance.timeout
             if hasattr(http_client_instance, 'session'):
@@ -68,13 +70,13 @@ class RequestsClient(HttpClient):
         self.timeout = timeout
         self.session = session()
 
-        retries = Retry(total=max_retries, backoff_factor=backoff_factor,
-                        status_forcelist=retry_statuses, allowed_methods=retry_methods)
-        self.session.mount('http://', HTTPAdapter(max_retries=retries))
-        self.session.mount('https://', HTTPAdapter(max_retries=retries))
-
         if cache:
             self.session = CacheControl(self.session)
+
+        retry_strategy = Retry(total=max_retries, backoff_factor=backoff_factor, status_forcelist=retry_statuses,
+                               allowed_methods=retry_methods, raise_on_status=False, raise_on_redirect=False)
+        self.session.mount('http://', HTTPAdapter(max_retries=retry_strategy))
+        self.session.mount('https://', HTTPAdapter(max_retries=retry_strategy))
 
         self.session.verify = verify
 
