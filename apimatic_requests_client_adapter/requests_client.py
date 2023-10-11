@@ -31,6 +31,15 @@ class RequestsClient(HttpClient):
 
         Args:
             timeout (float): The default global timeout(seconds).
+            cache (bool): Flag to enable/disable cache in the http client.
+            max_retries (int): Total number of retries to allow.
+            backoff_factor (float): A backoff factor to apply between attempts after the second try.
+            retry_statuses (iterable): A set of integer HTTP status codes that we should force a retry on.
+            retry_methods (iterable): Set of HTTP method verbs that we should retry on.
+            verify (bool): Flag to enable/disable verification of SSL certificate on the host.
+            http_client_instance (HttpClient): The custom HTTP client instance to use.
+            override_http_client_configuration (bool): Flag to override configuration for the custom HTTP client.
+            response_factory (ResponseFactory): The response factory to convert actual server response to SDK response.
 
         """
         if not verify:
@@ -45,14 +54,8 @@ class RequestsClient(HttpClient):
                 http_client_instance.timeout = timeout
                 if hasattr(http_client_instance, 'session'):
                     http_client_instance.session.verify = verify
-                    adapters = http_client_instance.session.adapters
-                    for adapter in adapters.values():
-                        adapter.max_retries.total = max_retries
-                        adapter.max_retries.backoff_factor = backoff_factor
-                        adapter.max_retries.status_forcelist = retry_statuses
-                        adapter.max_retries.allowed_methods = retry_methods
-                        adapter.max_retries.raise_on_status = False
-                        adapter.max_retries.raise_on_redirect = False
+                    self.update_retry_strategy(http_client_instance.session, max_retries, backoff_factor,
+                                               retry_statuses, retry_methods)
 
             self.timeout = http_client_instance.timeout
             if hasattr(http_client_instance, 'session'):
@@ -67,6 +70,18 @@ class RequestsClient(HttpClient):
                                    retry_statuses=None,
                                    retry_methods=None,
                                    verify=True):
+        """creates the default instance of HTTP client.
+
+        Args:
+            timeout (float): The default global timeout(seconds).
+            cache (bool): Flag to enable/disable cache in the http client.
+            max_retries (int): Total number of retries to allow.
+            backoff_factor (float): A backoff factor to apply between attempts after the second try.
+            retry_statuses (iterable): A set of integer HTTP status codes that we should force a retry on.
+            retry_methods (iterable): Set of HTTP method verbs that we should retry on.
+            verify (bool): Flag to enable/disable verification of SSL certificate on the host.
+
+        """
         self.timeout = timeout
         self.session = session()
 
@@ -145,3 +160,33 @@ class RequestsClient(HttpClient):
             response_body,
             http_request
         )
+
+    @staticmethod
+    def update_retry_strategy(custom_session,
+                              max_retries=None,
+                              backoff_factor=None,
+                              retry_statuses=None,
+                              retry_methods=None):
+        """Updates the retry strategy for the provided http client instance
+
+        Args:
+            custom_session (Session): The session of the http client instance to update.
+            max_retries (int): Total number of retries to allow.
+            backoff_factor (float): A backoff factor to apply between attempts after the second try.
+            retry_statuses (iterable): A set of integer HTTP status codes that we should force a retry on.
+            retry_methods (iterable): Set of HTTP method verbs that we should retry on.
+        """
+        adapters = custom_session.adapters
+        for adapter in adapters.values():
+            if hasattr(adapter, 'max_retries') and hasattr(adapter.max_retries, 'total'):
+                adapter.max_retries.total = max_retries
+            if hasattr(adapter, 'max_retries') and hasattr(adapter.max_retries, 'backoff_factor'):
+                adapter.max_retries.backoff_factor = backoff_factor
+            if hasattr(adapter, 'max_retries') and hasattr(adapter.max_retries, 'status_forcelist'):
+                adapter.max_retries.status_forcelist = retry_statuses
+            if hasattr(adapter, 'max_retries') and hasattr(adapter.max_retries, 'allowed_methods'):
+                adapter.max_retries.allowed_methods = retry_methods
+            if hasattr(adapter, 'max_retries') and hasattr(adapter.max_retries, 'raise_on_status'):
+                adapter.max_retries.raise_on_status = False
+            if hasattr(adapter, 'max_retries') and hasattr(adapter.max_retries, 'raise_on_redirect'):
+                adapter.max_retries.raise_on_redirect = False
