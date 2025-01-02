@@ -24,7 +24,7 @@ setup(
     install_requires=[
         'apimatic-core-interfaces~=0.1.0',
         'requests~=2.31',
-        'cachecontrol~=0.12.6'
+        'cachecontrol>=0.12.6,<0.15.0'
     ],
     tests_require=[
         'pytest~=7.2.2',
