@@ -1,4 +1,7 @@
-apimatic-core-interfaces~=0.1.0
+git+https://github.com/apimatic/core-interfaces-python@typing-support
 requests~=2.31
 cachecontrol~=0.12.6
-setuptools>=68.0.0
+setuptools>=70.0.0
+mypy==1.0.1
+typing
+pydantic~=2.10.4
