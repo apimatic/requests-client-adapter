@@ -1,5 +1,10 @@
+from typing import Optional, List
+
 import pytest
 from apimatic_core_interfaces.http.http_method_enum import HttpMethodEnum
+from apimatic_core_interfaces.http.http_request import HttpRequest
+from apimatic_core_interfaces.http.http_response import HttpResponse
+from requests import Session, Response
 from requests.structures import CaseInsensitiveDict
 
 from tests.apimatic_requests_client_adapter.base import Base
@@ -7,7 +12,7 @@ from tests.apimatic_requests_client_adapter.base import Base
 
 class TestRequestsClient(Base):
 
-    @pytest.mark.parametrize('http_response, contains_binary_response, http_request, expected_response', [
+    @pytest.mark.parametrize("response, contains_binary_response, http_request, expected_response", [
         (Base.actual_response_from_client(content=b'{"key": "value"}',
                                           headers=CaseInsensitiveDict({
                                               "Content-Type": "application/json; charset=utf-8"
@@ -24,8 +29,11 @@ class TestRequestsClient(Base):
          True, Base.request(),
          Base.response(text=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR', headers={"Content-Type": "image/png"})),
     ])
-    def test_convert_response(self, http_response, contains_binary_response, http_request, expected_response):
-        actual_response = self.client.convert_response(http_response, contains_binary_response, http_request)
+    def test_convert_response(
+            self, response: Response, contains_binary_response: bool, http_request: HttpRequest,
+            expected_response: HttpResponse
+    ):
+        actual_response = self.client.convert_response(response, contains_binary_response, http_request)
         assert actual_response.status_code == expected_response.status_code \
                and actual_response.reason_phrase == expected_response.reason_phrase \
                and actual_response.headers == expected_response.headers \
@@ -58,21 +66,24 @@ class TestRequestsClient(Base):
                                                              backoff_factor=2, verify=True),
                                   True, 100, 10, 4.3, [400, 401, 415, 429], [HttpMethodEnum.GET], False, False, False)
                              ])
-    def test_custom_client(self, timeout, cache, max_retries, backoff_factor, retry_statuses,
-                           retry_methods, verify, http_client_instance, override_http_client_configuration,
-                           expected_timeout, expected_max_retries, expected_backoff_factor, expected_retry_statuses,
-                           expected_retry_methods, expected_verify, expected_raise_on_status,
-                           expected_raise_on_redirect):
+    def test_custom_client(
+            self, timeout: int, cache: bool, max_retries: int, backoff_factor: float,
+            retry_statuses: Optional[List[int]], retry_methods: Optional[List[str]], verify: bool,
+            http_client_instance: Optional[Session], override_http_client_configuration: bool,
+            expected_timeout: int, expected_max_retries: int, expected_backoff_factor: float,
+            expected_retry_statuses: Optional[List[int]], expected_retry_methods: Optional[List[str]],
+            expected_verify: bool, expected_raise_on_status: bool, expected_raise_on_redirect: bool
+    ):
         actual_client = Base.create_request_client(timeout, cache, max_retries, backoff_factor, retry_statuses,
                                                    retry_methods, verify, http_client_instance,
                                                    override_http_client_configuration)
         for adapter in actual_client.session.adapters.values():
-            assert adapter.max_retries.total == expected_max_retries
-            assert adapter.max_retries.backoff_factor == expected_backoff_factor
-            assert adapter.max_retries.status_forcelist == expected_retry_statuses
-            assert adapter.max_retries.allowed_methods == expected_retry_methods
-            assert adapter.max_retries.raise_on_status == expected_raise_on_status
-            assert adapter.max_retries.raise_on_redirect == expected_raise_on_redirect
+            assert adapter.max_retries.total == expected_max_retries # type: ignore[attr-defined]
+            assert adapter.max_retries.backoff_factor == expected_backoff_factor # type: ignore[attr-defined]
+            assert adapter.max_retries.status_forcelist == expected_retry_statuses # type: ignore[attr-defined]
+            assert adapter.max_retries.allowed_methods == expected_retry_methods # type: ignore[attr-defined]
+            assert adapter.max_retries.raise_on_status == expected_raise_on_status # type: ignore[attr-defined]
+            assert adapter.max_retries.raise_on_redirect == expected_raise_on_redirect # type: ignore[attr-defined]
 
         assert actual_client.timeout == expected_timeout \
                and actual_client.session.verify == expected_verify
@@ -82,20 +93,20 @@ class TestRequestsClient(Base):
                                                    retry_methods=[HttpMethodEnum.GET, HttpMethodEnum.DELETE])
         actual_client.force_retries(self.request())
         for adapter in actual_client.session.adapters.values():
-            assert adapter.max_retries.total == 10
-            assert adapter.max_retries.allowed_methods == [HttpMethodEnum.GET, HttpMethodEnum.DELETE]
+            assert adapter.max_retries.total == 10 # type: ignore[attr-defined]
+            assert adapter.max_retries.allowed_methods == [HttpMethodEnum.GET, HttpMethodEnum.DELETE] # type: ignore[attr-defined]
 
     def test_disabled_force_retries(self):
         actual_client = self.client
         actual_client.force_retries(self.request(), should_retry=False)
         for adapter in actual_client.session.adapters.values():
-            assert adapter.max_retries == False
+            assert adapter.max_retries == False # type: ignore[attr-defined]
 
     def test_enabled_force_retries(self):
         actual_client = self.client
         request = self.request()
         actual_client.force_retries(request, should_retry=True)
         for adapter in actual_client.session.adapters.values():
-            assert adapter.max_retries.allowed_methods == [request.http_method]
+            assert adapter.max_retries.allowed_methods == [request.http_method] # type: ignore[attr-defined]
 
 

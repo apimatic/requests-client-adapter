@@ -21,7 +21,7 @@ class Base:
 
     @staticmethod
     @validate_call
-    def response(status_code: int=200, reason_phrase: Optional[str]=None,
+    def response(status_code: int=200, reason_phrase: str='',
                  headers: Optional[Dict[str, str]]=None, text: Optional[Union[str, bytes]]=None) -> HttpResponse:
         return HttpResponse(status_code=status_code, reason_phrase=reason_phrase,
                             headers=headers, text=text, request=Base.request())
@@ -30,11 +30,11 @@ class Base:
     @validate_call(config={'arbitrary_types_allowed': True})
     def actual_response_from_client(status_code: int=200, reason: Optional[str]=None,
                                     headers: Optional[CaseInsensitiveDict]=None, text: Optional[str]=None,
-                                    content: Union[str, bytes, Any]=None) -> Response:
+                                    content: Optional[bytes]=None) -> Response:
         response = Response()
         response.status_code = status_code
-        response.reason = reason
-        response.headers = headers
+        response.reason = reason or ''
+        response.headers = headers or CaseInsensitiveDict()
 
         # Set encoding if available
         if "Content-Type" in response.headers and "charset=" in response.headers["Content-Type"]:
@@ -49,8 +49,6 @@ class Base:
             response._content = content
         else:
             response._content = b""  # Default to empty bytes if no text or content
-
-        response._content_consumed = True
         return response
 
     @property
@@ -66,7 +64,7 @@ class Base:
                               retry_methods: Optional[List[str]]=None,
                               verify: bool=True) -> Session:
         session = Session()
-        retries: Retry = Retry(total=max_retries, backoff_factor=backoff_factor, status_forcelist=retry_statuses,
+        retries: Retry = Retry(total=max_retries, backoff_factor=backoff_factor or 0, status_forcelist=retry_statuses,
                                allowed_methods=retry_methods, raise_on_status=False, raise_on_redirect=False)
         session.mount('http://', HTTPAdapter(max_retries=retries))
         session.mount('https://', HTTPAdapter(max_retries=retries))
