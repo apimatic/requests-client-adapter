@@ -41,6 +41,7 @@ class RequestsClient(HttpClient):
             http_client_instance (HttpClient): The custom HTTP client instance to use.
             override_http_client_configuration (bool): Flag to override configuration for the custom HTTP client.
             response_factory (ResponseFactory): The response factory to convert actual server response to SDK response.
+            proxies (Dict[str, str]): A dictionary mapping protocol to the URL of the proxy.
 
         """
         if not verify:
@@ -82,7 +83,7 @@ class RequestsClient(HttpClient):
             retry_statuses (iterable): A set of integer HTTP status codes that we should force a retry on.
             retry_methods (iterable): Set of HTTP method verbs that we should retry on.
             verify (bool): Flag to enable/disable verification of SSL certificate on the host.
-            proxies (Dict[str, str]): A dictionary mapping protocol to the URL of the proxy
+            proxies (Dict[str, str]): A dictionary mapping protocol to the URL of the proxy.
 
         """
         self.timeout = timeout
