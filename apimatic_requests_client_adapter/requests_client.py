@@ -82,7 +82,7 @@ class RequestsClient(HttpClient):
             retry_statuses (iterable): A set of integer HTTP status codes that we should force a retry on.
             retry_methods (iterable): Set of HTTP method verbs that we should retry on.
             verify (bool): Flag to enable/disable verification of SSL certificate on the host.
-            proxies: (Dict[str, str]): A dictionary mapping protocol to the URL of the proxy
+            proxies (Dict[str, str]): A dictionary mapping protocol to the URL of the proxy
 
         """
         self.timeout = timeout
