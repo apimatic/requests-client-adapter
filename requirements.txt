@@ -1,4 +1,4 @@
-apimatic-core-interfaces~=0.1.0
+git+https://github.com/apimatic/core-interfaces-python@41-configurable-http-client-provider
 requests~=2.31
 cachecontrol~=0.12.6
 setuptools>=68.0.0

@@ -12,7 +12,7 @@ else:
 
 setup(
     name='apimatic-requests-client-adapter',
-    version='0.1.8',
+    version='0.1.9',
     description='An adapter for requests client library consumed by the SDKs generated with APIMatic',
     long_description=long_description,
     long_description_content_type="text/markdown",
