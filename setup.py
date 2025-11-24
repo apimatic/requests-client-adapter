@@ -22,12 +22,12 @@ setup(
     url='https://github.com/apimatic/requests-client-adapter',
     packages=find_packages(),
     install_requires=[
-        'apimatic-core-interfaces~=0.1.0',
+        'apimatic-core-interfaces~=0.1.0, >= 0.1.8',
         'requests~=2.31',
         'cachecontrol>=0.12.6,<0.15.0'
     ],
     tests_require=[
-        'pytest~=7.2.2',
-        'pytest-cov~=4.0.0'
+        'pytest>=7.2.2,<8.4.0',
+        'pytest-cov>=4.0,<6.1'
     ]
 )
