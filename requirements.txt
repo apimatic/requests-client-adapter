@@ -1,4 +1,4 @@
-apimatic-core-interfaces~=0.1.0
+apimatic-core-interfaces~=0.1.0, >= 0.1.8
 requests~=2.32
 cachecontrol~=0.12.6
 setuptools>=68.0.0
