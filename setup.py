@@ -27,7 +27,7 @@ setup(
         'cachecontrol>=0.12.6,<0.15.0'
     ],
     tests_require=[
-        'pytest>=7.2.2,<8.4.0',
+        'pytest>=7.2.2,<9.1.0',
         'pytest-cov>=4.0,<6.1'
     ]
 )
